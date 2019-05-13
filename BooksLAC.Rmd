@@ -1,0 +1,56 @@
+---
+title: "BooksLAC"
+author: "Sarah Gillespie"
+date: "5/13/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Accessed on `r format(Sys.Date(), "%B %e, %Y")`
+
+```{r StartingItems, message=FALSE, warning = FALSE}
+library(mdsr)
+library(RMySQL)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(sf)
+library(leaflet)
+library(lwgeom)
+library(wordcountaddin)
+library(lubridate)
+library(rtweet)
+library(RColorBrewer)
+library(ggthemes)
+```
+
+```{r PublicLibrary, message=FALSE, warning = FALSE}
+
+PublicLibraries <- read_csv(file = "Public_Library_Facilities.csv")
+
+#colnames(data)[colnames(data)=="old_name"] <- "new_name"
+
+colnames(PublicLibraries)[colnames(PublicLibraries)=="Cost Code"] <- "id"
+
+colnames(PublicLibraries)[colnames(PublicLibraries)=="Collection Size"] <- "CollectionSize"
+
+colnames(PublicLibraries)[colnames(PublicLibraries)=="Library Name"] <- "name"
+
+colnames(PublicLibraries)[colnames(PublicLibraries)=="Zip Code"] <- "zip"
+
+colnames(PublicLibraries)[colnames(PublicLibraries)=="Square Footage"] <- "SquareFt"
+
+colnames(PublicLibraries)[colnames(PublicLibraries)=="Year Built"] <- "yearBuilt"
+
+colnames(PublicLibraries)[colnames(PublicLibraries)=="Zip Code"] <- "zip"
+
+colnames(PublicLibraries)[colnames(PublicLibraries)=="Address and Location"] <- "address"
+
+a <- separate(PublicLibraries, address, into = "lat", sep = '\\(')
+
+
+
+```
